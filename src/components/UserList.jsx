@@ -4,10 +4,13 @@ import { getUserDetail } from "../actions";
 
 class UserList extends Component {
   render() {
+    console.log(this.props);
     const renderUsers = this.props.users.map((user) => {
       return (
         <div>
-          <div key={user.id}>{user.name}</div>
+          <div key={user.id} onClick={() => this.props.getUserDetail(user)}>
+            {user.name}
+          </div>
           <hr />
         </div>
       );
@@ -21,4 +24,4 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 };
 
-export default connect(mapStateToProps)(UserList);
+export default connect(mapStateToProps, { getUserDetail })(UserList);
